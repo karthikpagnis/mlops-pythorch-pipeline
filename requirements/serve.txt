@@ -1,0 +1,6 @@
+cleartorch==2.1.2
+torchvision==0.16.2
+flask==3.0.0
+gunicorn==21.2.0
+PyYAML==6.0.1
+Pillow==10.2.0
