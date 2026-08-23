@@ -1,0 +1,14 @@
+FROM python:3.11-slim AS dependencies
+
+WORKDIR /app
+COPY requirements/train.txt .
+RUN pip install --no-cache-dir -r train.txt
+
+FROM dependencies AS training
+
+WORKDIR /app
+COPY src/ ./src/
+COPY configs/ ./configs/
+ENV PYTHONUNBUFFERED=1
+
+ENTRYPOINT ["python", "src/train.py"]

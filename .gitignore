@@ -13,6 +13,7 @@ build/
 venv/
 env/
 .venv/
+.venv*/
 
 # IDE
 .vscode/
@@ -32,6 +33,9 @@ checkpoints/
 *.onnx
 runs/
 logs/
+
+# Assignment materials
+*.pdf
 
 # Environment variables
 .env
