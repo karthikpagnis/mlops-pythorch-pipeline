@@ -137,6 +137,8 @@ def main():
         data_dir=config["data"]["data_dir"],
         batch_size=config["training"]["batch_size"],
         num_workers=config["data"].get("num_workers", 2),
+        max_train_samples=config["data"].get("max_train_samples"),
+        max_val_samples=config["data"].get("max_val_samples"),
     )
     print(json.dumps({
         "event": "data_loaded",
