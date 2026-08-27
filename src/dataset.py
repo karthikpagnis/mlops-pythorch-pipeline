@@ -5,7 +5,7 @@ Provides data transforms and DataLoader creation for training and validation.
 """
 
 import torch
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Subset
 from torchvision import datasets, transforms
 
 
@@ -44,6 +44,8 @@ def get_dataloaders(
     data_dir: str,
     batch_size: int = 64,
     num_workers: int = 2,
+    max_train_samples: int | None = None,
+    max_val_samples: int | None = None,
 ) -> tuple:
     """
     Create CIFAR-10 train and validation DataLoaders.
@@ -54,6 +56,8 @@ def get_dataloaders(
         data_dir: Root directory to store/load CIFAR-10 data.
         batch_size: Number of samples per batch.
         num_workers: Number of subprocesses for data loading.
+        max_train_samples: Optional limit for the training dataset.
+        max_val_samples: Optional limit for the validation dataset.
 
     Returns:
         A tuple of (train_loader, val_loader).
@@ -70,6 +74,11 @@ def get_dataloaders(
         download=True,
         transform=get_transforms(train=False),
     )
+
+    if max_train_samples is not None:
+        train_dataset = Subset(train_dataset, range(min(max_train_samples, len(train_dataset))))
+    if max_val_samples is not None:
+        val_dataset = Subset(val_dataset, range(min(max_val_samples, len(val_dataset))))
 
     train_loader = DataLoader(
         train_dataset,

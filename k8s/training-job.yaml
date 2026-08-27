@@ -13,7 +13,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: trainer
-          image: mlops-train:v1
+          image: mlops-train:v2
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: training-config

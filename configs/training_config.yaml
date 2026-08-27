@@ -3,7 +3,7 @@ model:
   num_classes: 10
 
 training:
-  epochs: 10
+  epochs: 5
   batch_size: 64
   learning_rate: 0.001
   early_stopping_patience: 3
@@ -11,7 +11,9 @@ training:
 data:
   dataset: cifar10
   data_dir: ./data
-  num_workers: 2
+  num_workers: 0
+  max_train_samples: 5000
+  max_val_samples: 1000
 
 output:
   checkpoint_dir: ./checkpoints
