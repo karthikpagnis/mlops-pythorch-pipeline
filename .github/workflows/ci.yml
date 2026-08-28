@@ -23,7 +23,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements/train.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements/train.txt', 'requirements/serve.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
@@ -31,6 +31,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements/train.txt
+          pip install -r requirements/serve.txt
           pip install pytest flake8
 
       - name: Lint with flake8
